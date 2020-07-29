@@ -2,3 +2,4 @@ RNNoise/node_modules
 RNNoise/data/output
 final_audio.wav
 .vscode/settings.json
+*/.vscode/*

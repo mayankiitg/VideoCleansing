@@ -17,9 +17,10 @@ def stereoToMono(audiodata):
     return d
 
 # load data
-print("loading data!")
+filename = "TestData/noisy_video_1.wav"
+print(f"loading data! from file: {filename}")
 
-rate, data = wavfile.read("testfile.wav")
+rate, data = wavfile.read(filename)
 print(f"number of channels = {data.shape[1]}, length = {data.shape[0] / rate}s")
 
 # wave file can have data in int16 or float32 format.. if in float, values should b e in range [-1, 1]. So normalize.
@@ -34,7 +35,7 @@ if (data.shape[1] == 2):
 print("Data loaded!")
 print("Transforming into numpy array! and selecting noisy part in the signal!")
 
-noisy_part = data[:5000]
+noisy_part = data[:15000]
 
 print('shape of noisy part is: {}'.format(noisy_part.shape))
 
@@ -45,8 +46,8 @@ reduced_noise_norm = reduced_noise/np.max(np.abs(reduced_noise),axis=0)
 
 print("Noise reduction successful, writing to wavfile!")
 
-wavfile.write("input_audio.wav", rate, data)
-wavfile.write("final_audio.wav", rate, reduced_noise)
+# wavfile.write("input_audio.wav", rate, data)
+# wavfile.write("final_audio.wav", rate, reduced_noise)
 wavfile.write("final_audio_norm.wav", rate, reduced_noise_norm)
 
 print("Done!! you made it!")
